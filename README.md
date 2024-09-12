@@ -1,2 +1,3 @@
-# 2DAW
-My 2º DAW activities, projects and more
+# 2º DAW
+
+### Repository made to upload my 2º DAW files
