@@ -1,0 +1,23 @@
+body{
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+card_title{
+    color: white;
+    background: gray;
+    font-size: 1,5rem;
+}
+
+card_body{
+    font-style: italic;
+    text-align: justify;
+    padding: 8px;
+}
+
+card_footer{
+    color: white;
+    background: gainsboro;
+    text-align: center;
+    padding: 8px; 
+}
