@@ -1,0 +1,65 @@
+body {
+  height: 100vh;
+  background-image: linear-gradient(to bottom, blue, white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: white;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: fit-content;
+  background-color: white;
+  color: black;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 350px;
+  height: fit-content;
+  margin: 5px 5px 5px 5px;
+  background-color: skyblue;
+  color: black;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: bold;
+  border-radius: 25px;
+  transition: 0.6s;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+
+p {
+  color: transparent;
+  transition: 0.8s;
+}
+
+.done:hover {
+  background-color: #2ecc71;
+}
+
+.done:hover p {
+  color: white;
+}
+
+.todo:hover {
+  background-color: #e74c3c;
+}
+
+.todo:hover p {
+  color: white;
+}

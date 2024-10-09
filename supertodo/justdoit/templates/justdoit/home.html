@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="{% static 'justdoit/custom.css' %}">
+</head>
+{% block body %}
+  <h1 class="tittle">📝 TAREAS 📝</h1>
+  <div class="content">
+  {% for task in tasks %}
+    {% if task.done %}
+      <div class="task done">
+        <h3>{{ task.name }}</h3>
+        <a href="{% url 'justdoit:task_detail' task.slug %}" target="_blank">+ Detalles +</a>
+      </div>
+    {% else %}
+      <div class="task todo">
+        <h3>{{ task.name }}</h3>
+        <a href="{% url 'justdoit:task_detail' task.slug %}" target="_blank">+ Detalles +</a>
+      </div>
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endblock body %}
