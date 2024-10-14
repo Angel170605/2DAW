@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tareas</title>
+  <link rel="stylesheet" href="{% static 'justdoit/custom.css' %}">
+  <link rel="shortcut icon" href="{% static 'assets/logo.png' %}">
+</head>
+{% block body %}
+  <h1 class="tittle">📝 TAREAS 📝</h1>
+  <div class="content">
+    <div class="tasks done_tasks">
+      {% for task in done_tasks %}
+          <div class="task done">
+            <a href="{% url 'justdoit:task_detail' task.slug %}" target="_blank">⬛ {{ task.name }}</a>
+          </div>
+      {% endfor %}
+    </div>
+    <div class="tasks pending_tasks">
+      {% for task in pending_tasks %}  
+          <div class="task todo">
+            <a href="{% url 'justdoit:task_detail' task.slug %}" target="_blank">⬛ {{ task.name }}</a>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+  <a class="back_home" href="{% url 'justdoit:home' %}" target="_blank">Volver al Chozo 🏠</a>
+{% endblock body %}

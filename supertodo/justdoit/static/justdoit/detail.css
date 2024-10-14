@@ -1,0 +1,23 @@
+a {
+  text-decoration: none;
+  color: beige;
+  font-weight: bold;
+}
+
+.back_home {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: orangered;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  transition: 0.6s;
+}
+
+.back_home:hover {
+  border-color: orangered;
+  color: orangered;
+  background-color: beige;
+}
