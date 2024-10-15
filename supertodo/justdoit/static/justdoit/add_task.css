@@ -1,0 +1,10 @@
+body {
+  height: 100vh;
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: black;
+}

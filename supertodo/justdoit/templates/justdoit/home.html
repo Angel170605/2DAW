@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principal</title>
+  <link rel="stylesheet" href="{% static 'justdoit/home.css' %}">
+  <link rel="shortcut icon" href="{% static 'assets/logo.png' %}">
+</head>
+{% block body %}
+  <header>
+    <img width="5%" src="{% static 'assets/logo.png' %}">
+    <a class="link_bttn" href="{% url 'justdoit:tasks' %}" target="_blank">Tareas</a>
+    <a class="link_bttn" href="{% url 'justdoit:add_task' %}" target="_blank">Añadir tarea</a>
+  </header>
+  <content>
+    <h1>¡Te doy la bienvenida a Just Do It!</h1>
+    <p>¡Bienvenido a Just Do It, tu nueva (espero) aplicación web de tareas favorita!</p>
+    <p>¿Alguna vez te ha pasado que tienes que hacer tantas cosas que te olvidas de alguna? A veces la tienes en la punta de la lengua, pero no consigues recordarlo. O incluso, ¿Dudas si la has hecho ya o no? ¿Y qué me dices de cuando vas a comprar al supermercado y se te olvida la lista de la compra en casa? Pff... Un tanto frustrante, ¿No te parece? Bueno, pues respira que acabas de dar con la solución.
+    <p>Just Do It (cuyo nombre se inspira no muy ligeramente del slogan de una famosa marca) se trata de una aplicación web que hace de lista de tareas. Ahora podrás anotar todas esas cosas que tienes pendientes de hacer de manera fácil y accesible desde móviles, tablets u ordenadores; además de comprobar si has hecho o no las mismas.</p>
+    <p>¿Suena bien, eh?</p>
+
+
+  </content>
+{% endblock body %}

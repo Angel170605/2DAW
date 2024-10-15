@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ task.name }}</title>
+  <link rel="stylesheet" href="{% static 'justdoit/detail.css' %}">
+  <link rel="shortcut icon" href="{% static 'assets/logo.png' %}">
+</head>
+
+{% block body %}
+  {% if task.done %}
+    <div class="task done">
+      <p class="task_status dn">Completada</p>
+      <h1>{{ task.name }}</h1>
+      <p>{{ task.description }}</p>
+    </div>
+  {% else %}
+    <div class="task pending">
+      <p class="task_status pnd">Pendiente</p>
+      <h1>{{ task.name }}</h1>
+      <p>{{ task.description }}</p>
+    </div>
+  {% endif %}
+  <a class="back_home" href="{% url 'justdoit:home' %}" target="_blank">Volver al Chozo 🏠</a>
+{% endblock body %}
