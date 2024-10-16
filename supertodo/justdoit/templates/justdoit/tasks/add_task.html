@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Añadir tarea</title>
+  <link rel="stylesheet" href="{% static 'justdoit/add_task.css' %}">
+  <link rel="stylesheet" href="{% static 'justdoit/nav.css' %}">
+  <link rel="shortcut icon" href="{% static 'assets/logo.png' %}">
+</head>
+{% block body %}
+  <header>
+    <img width="5%" src="{% static 'assets/logo.png' %}">
+    <a class="link_bttn" href="{% url 'justdoit:task_list' %}" target="_blank">Tareas</a>
+    <a class="link_bttn" href="{% url 'justdoit:add_task' %}" target="_blank">Añadir tarea</a>
+  </header>
+  <content>
+    <h1>✏️ Añadir tarea ✏️</h1>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form }}
+
+      </form>
+    </content>
+  {% endblock body %}
+</html>

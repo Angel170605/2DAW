@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tareas</title>
+  <link rel="stylesheet" href="{% static 'justdoit/tasklist.css' %}">
+  <link rel="stylesheet" href="{% static 'justdoit/nav.css' %}">
+  <link rel="shortcut icon" href="{% static 'assets/logo.png' %}">
+</head>
+{% block body %}
+  <header>
+    <img width="5%" src="{% static 'assets/logo.png' %}">
+    <a class="link_bttn" href="{% url 'justdoit:task_list' %}" target="_blank">Tareas</a>
+    <a class="link_bttn" href="{% url 'justdoit:add_task' %}" target="_blank">Añadir tarea</a>
+  </header>
+  <h1 class="tittle">📝 TAREAS 📝</h1>
+  <div class="content">
+    <div class="tasks done_tasks">
+      <h2>✅ TAREAS COMPLETADAS ✅</h2>
+      {% for task in done_tasks %}
+          <div class="task done">
+            <a href="{% url 'justdoit:task_detail' task.slug %}" target="_blank">✅ {{ task.name }}</a>
+          </div>
+      {% endfor %}
+    </div>
+    <div class="tasks pending_tasks">
+      <h2>❌ TAREAS PENDIENTES ❌</h2>
+      {% for task in pending_tasks %}  
+          <div class="task todo">
+            <a href="{% url 'justdoit:task_detail' task.slug %}" target="_blank">❌ {{ task.name }}</a>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock body %}

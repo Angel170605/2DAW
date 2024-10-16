@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ task.name }}</title>
+  <link rel="stylesheet" href="{% static 'justdoit/detail.css' %}">
+  <link rel="stylesheet" href="{% static 'justdoit/nav.css' %}">
+  <link rel="shortcut icon" href="{% static 'assets/logo.png' %}">
+</head>
+{% block body %}
+  <header>
+    <img width="5%" src="{% static 'assets/logo.png' %}">
+    <a class="link_bttn" href="{% url 'justdoit:task_list' %}" target="_blank">Tareas</a>
+    <a class="link_bttn" href="{% url 'justdoit:add_task' %}" target="_blank">Añadir tarea</a>
+  </header>
+  {% if task.done %}
+    <div class="task done">
+      <p class="task_status dn">Completada</p>
+      <h1>{{ task.name }}</h1>
+      <p>{{ task.description }}</p>
+    </div>
+  {% else %}
+    <div class="task pending">
+      <p class="task_status pnd">Pendiente</p>
+      <h1>{{ task.name }}</h1>
+      <p>{{ task.description }}</p>
+    </div>
+  {% endif %}
+{% endblock body %}

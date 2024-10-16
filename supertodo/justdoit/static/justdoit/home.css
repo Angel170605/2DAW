@@ -1,0 +1,14 @@
+content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+h1 {
+  text-align: center;
+}
