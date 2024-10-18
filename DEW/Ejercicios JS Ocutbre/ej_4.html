@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de la Tierra Media</title>
+</head>
+<body>
+    <h1>Mapa de la Tierra Media</h1>
+    <div id="mapa" style="background-image: url(./mapa.png); background-size: cover;">
+        <svg viewBox="0 0 800 600" id="svg-mapa">
+            <rect width="800" height="600" fill="transparent"/>
+            <g>
+                <a href="#" class="reino" id="mordor" data-reino="Mordor">
+                    <circle cx="700" cy="425" r="80" fill="transparent"/>
+                    <text x="580" y="405" fill="white"></text>
+                </a>
+                <a href="#" class="reino" id="rohan" data-reino="Rohan">
+                    <circle cx="475" cy="350" r="80" fill="transparent"/>
+                    <text x="180" y="205" fill="white"></text>
+                </a>
+                <a href="#" class="reino" id="gondor" data-reino="Gondor">
+                    <circle cx="475" cy="475" r="80" fill="transparent"/>
+                    <text x="380" y="305" fill="white"></text>
+                </a>
+            </g>
+        </svg>
+    </div>
+    
+    <script src="ej_4.js"></script>
+</body>
+</html>
