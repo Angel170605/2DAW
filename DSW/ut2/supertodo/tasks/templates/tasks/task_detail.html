@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href={% static 'tasks/logo.png' %}>
+  <link rel="stylesheet" href="{% static 'tasks/tasklist.css' %}">
+  <title>{{ task.name }}</title>
+</head>
+{% block body %}
+<nav>
+  <a href="{% url 'tasks:task-list' %}" target="_blank">Principal</a>
+  <a href="{% url 'tasks:done' %}" target="_blank">Tareas completadas</a>
+  <a href="{% url 'tasks:pending' %}" target="_blank">Tareas sin completar</a>
+  <a href="{% url 'tasks:add' %}" target="_blank">Añadir tarea</a>
+</nav>
+<task>
+  <h1>{{ task.name }}</h1>
+  <p>{{ task.description }}</p>
+  <taskoptions>
+    <a class="details" href={% url 'tasks:details' task.slug %} target="_blank"> 🛈 </a>
+      {% if task.done %}
+        <a class="pending" href="{% url 'tasks:toggle' task.slug%}">✕</a>
+      {% else %}
+        <a class="done" href="{% url 'tasks:toggle' task.slug%}">✓</a>
+      {% endif %}
+    <a class="edit" href={% url 'tasks:edit' task.slug %} target="_blank"> ✎ </a>
+    <a class="delete" href={% url 'tasks:delete' task.slug %}>🗑</a>
+  </taskoptions>
+</task>
+{% endblock body %}
+</html>
