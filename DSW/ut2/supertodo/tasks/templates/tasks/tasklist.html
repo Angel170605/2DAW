@@ -17,8 +17,12 @@
   <a href="{% url 'tasks:add' %}">Añadir tarea</a>
 </nav>
   <tasks>
-    {% for task in tasks %}
-      <task class="ready">
+      {% for task in tasks %}
+      {% if task.done %}
+        <task class="ready">
+      {% else %}
+          <task class="unready">
+      {% endif %}
         <h1>{{ task.name }}</h1>
         <p>{{ task.description }}</p>
         <taskoptions>

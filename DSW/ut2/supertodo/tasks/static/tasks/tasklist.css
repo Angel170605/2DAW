@@ -61,11 +61,11 @@ task:hover {
 }
 
 .ready {
-  border: 2px green;
+  border: 2px solid green;
 }
 
-.pending {
-  border: 2px darkred;
+.unready {
+  border: 2px solid darkred;
 }
 
 taskoptions {
