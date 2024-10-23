@@ -61,11 +61,21 @@ task:hover {
 }
 
 .ready {
-  border: 2px solid green;
+  transition: 0.4s;
 }
 
 .unready {
-  border: 2px solid darkred;
+  transition: 0.4s;
+}
+
+.ready:hover {
+  background-color: green;
+  color: white;
+}
+
+.unready:hover {
+  background-color: darkred;
+  color: white;
 }
 
 taskoptions {
