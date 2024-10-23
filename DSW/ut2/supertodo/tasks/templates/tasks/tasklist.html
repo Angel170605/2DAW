@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href={% static 'tasks/logo.png' %}>
+  <link rel="stylesheet" href="{% static 'tasks/tasklist.css' %}">
+  <title>Principal</title>
+</head>
+{% block body %}
+<nav>
+  <a href="{% url 'tasks:task-list' %}" target="_blank">Principal</a>
+  <a href="{% url 'tasks:done' %}" target="_blank">Tareas completadas</a>
+  <a href="{% url 'tasks:pending' %}" target="_blank">Tareas sin completar</a>
+  <a href="{% url 'tasks:add' %}">Añadir tarea</a>
+</nav>
+<details>
+  <summary>¿Qué es Tasks?</summary>
+  <info>
+    <h1>¡Te doy la bienvenida a Tasks!</h1>
+    <h4>Vale, bien, pero... ¿Qué es tasks? Si es la primera vez que entras a esta página, es probable que no sepas muy bien de qué va o cómo funciona.Pero no te preocupes, que te explico: Tasks es una aplicación web de gestión de tareas, en la que podrás crear, ver los detalles, modificar, marcar como completada o pendiente, y eliminar tus tareas desde la comodidad de tu móvil, tablet o pc.</h4> 
+    <h4> Para ello, tienes un humilde menú superior en el que podrás acceder a esta página (principal), a la lista de tareas completadas, pendientes, y añadir nuevas tareas. Por otra parte, en cuanto a la gestión de las tareas ya existentes, tendrás un pequeño menú en cada una de ellas. Simplemente pasa el ratón por encima o pulsa sobre alguna de ellas para que aparezca</h4>
+    <h4>Podrás encontrarte seis iconos distintos:</h4>
+    <h4>🛈: Información de la tarea. Pulsa aquí para ver los detalles de la misma.</h4>
+    <h4>✓: Marcar como completada. Solo lo verás en las tareas pendientes. Púlsalo para marcar la tarea como hecha.</h4>
+    <h4>✕: Marcar como pendiente. Solo lo verás en las tareas completadas. Púlsalo para volver a marcar la tarea como pendiente.</h4>
+    <h4>✎: Modificar tarea. Púlsalo para modificar el nombre o contenido de la misma</h4>
+    <h4>🗑: Eliminar tarea. Púlsalo para borrar una tarea. Ten en cuenta que este cambio es irreversible.</h4>
+    <h4> Bueno, espero que mi humilde explicación te haya servido. ¡Adelante, ya puedes usar tu nueva (espero) aplicación web de gestión de tareas favorita!</h4>
+  </info>
+</details>
+  <h1>TAREAS</h1>
+  <tasks>
+    {% for task in tasks %}
+      {% if task.done %}
+        <task class="finished">
+      {% else %}
+        <task class="unfinished">
+      {% endif %}
+        <h3>{{ task.name }}</h3>
+        <p>{{ task.description | truncatechars:70 }}</p>
+        <taskoptions>
+          <a class="details" href={% url 'tasks:details' task.slug %} target="_blank"> 🛈 </a>
+            {% if task.done %}
+              <a class="pending" href="{% url 'tasks:toggle' task.slug%}">✕</a>
+            {% else %}
+              <a class="done" href="{% url 'tasks:toggle' task.slug%}">✓</a>
+            {% endif %}
+          <a class="edit" href={% url 'tasks:edit' task.slug %}> ✎ </a>
+          <a class="delete" href={% url 'tasks:delete' task.slug %}>🗑</a>
+        </taskoptions>
+      </task>
+    {% endfor %}
+    </tasks>
+{% endblock body %}
+</body>
+</html>
