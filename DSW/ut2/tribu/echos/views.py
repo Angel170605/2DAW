@@ -8,17 +8,17 @@ def echos(request):
     return render(request, 'echos/echos.html', {'echos': echos})
 
 
-def detail(request):
-    echo = Echo.objects.get(id)
+def detail(request, task_id: int):
+    echo = Echo.objects.get(id=task_id)
     return render(request, {'echo': echo})
 
 
-def edit(request):
-    echo = Echo.objects.get(id)
+def edit(request, task_id: int):
+    echo = Echo.objects.get(id=task_id)
     return render(request, {'echo': echo})
 
 
-def delete(request):
-    echo = Echo.objects.get(id)
+def delete(request, task_id: int):
+    echo = Echo.objects.get(id=task_id)
     echo.delete()
     return render(request)
