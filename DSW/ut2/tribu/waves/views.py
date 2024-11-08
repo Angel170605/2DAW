@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from echos.models import Echo
 from waves.models import Wave
 
-from .forms import AddWaveForm
+from .forms import AddWaveForm, EditWaveForm
 
 
 def waves(request):
@@ -15,6 +15,7 @@ def waves(request):
 @login_required
 def add_wave(request, echo_id: int):
     echo = Echo.objects.get(id=echo_id)
+    action = 'Añadir Wave'
     if request.method == 'GET':
         form = AddWaveForm()
     else:
@@ -23,5 +24,24 @@ def add_wave(request, echo_id: int):
             wave.user = request.user
             wave.echo = echo
             wave.save()
-            return redirect('echos:echos')
-    return render(request, 'add_wave.html', dict(form=form))
+            return redirect('echos:detail', echo_id=echo_id)
+    return render(request, 'wave_form.html', {'form': form, 'action': action})
+
+
+def edit(request, echo_id: int, wave_id: int):
+    wave = Wave.objects.get(id=wave_id)
+    action = 'Modificar wave'
+    if request.method == 'GET':
+        form = EditWaveForm(instance=wave)
+    else:
+        if (form := EditWaveForm(request.POST, instance=wave)).is_valid():
+            wave = form.save()
+            wave.save
+            return redirect('echos:detail', echo_id)
+    return render(request, 'wave_form.html', {'wave': wave, 'form': form, 'action': action})
+
+
+def delete(request, echo_id: int, wave_id: int):
+    wave = Wave.objects.get(id=wave_id)
+    wave.delete()
+    return redirect('echos:detail', echo_id)

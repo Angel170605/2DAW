@@ -1,58 +1,24 @@
-
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'echos.css' %}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <title>Document</title>
-</head>
-<body>
-  <nav>
-    <h1>Echos</h1>
-    <a href="{% url 'echos:add' %}">Añadir</a>
-    {% if user.is_authenticated %}
-    <details>
-      <summary>{{ user.username }}</summary>
-      <div class="dropdown-content">
-        <a href="{% url 'logout' %}">Logout</a>
-      </div>
-    </details>
-    {% else %}
-    <details>
-      <summary>Join to the tribu</summary>
-      <div class="dropdown-content">
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'signup' %}">Sign Up</a>
-      </div>
-    </details>    
-    {% endif %}
-  </nav>
+{% extends "base.html" %}
 
   {% block content %}
   <content>
+    <a href="{% url 'echos:add' %}"><i class="bi bi-chat-dots"></i></a>
     {% for echo in echos %}
-    <echo>
-      <div class="datetime_info">
+      <echo>
+        <div class="datetime_info">
           <p>Updated at{{ echo.updated_at }}</p> 
           <p>Posted at {{ echo.created_at }}</p>
-      </div>
-      <h3>{{ echo.content }}</h3>
-      <p>by {{ echo.user }}</p>
-      <menu>
-        <a href="{% url 'echos:detail' echo.id %}" target="_blank"><i class="bi bi-info-circle"></i></a>
-        {% if echo.user.id == user.id %}
-          <a href="{% url 'waves:add' echo.id %}"><i class="bi bi-chat-dots"></i></a>  
-          <a href="{% url 'echos:delete' echo.id %}"><i class="bi bi-trash"></i></a>
-          <a href="{% url 'echos:edit' echo.id %}"><i class="bi bi-pencil-square"></i></a>
-        {% endif %}
-      </menu>
-    </echo>
+        </div>
+          <h3>{{ echo.content }}</h3>
+          <p>by <a href={% url 'users:user_echos' echo.user.id %} >{{ echo.user }}</a></p>
+        <menu>
+          <a href="{% url 'echos:detail' echo.id %}" target="_blank"><i class="bi bi-info-circle"></i></a>
+          {% if echo.user.id == user.id %}
+            <a href="{% url 'echos:delete' echo.id %}"><i class="bi bi-trash"></i></a>
+            <a href="{% url 'echos:edit' echo.id %}"><i class="bi bi-pencil-square"></i></a>
+          {% endif %}
+        </menu>
+      </echo>
     {% endfor %}
   </content>
   {% endblock content %}
-</body>
-</html>

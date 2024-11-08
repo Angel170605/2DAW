@@ -1,36 +1,31 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'echo_detail.css' %}">
-  <title>{{ echo.content }}</title>
-</head>
-<body>
-  {% block content %}
-    <echo>
-      <div class="datetime_info">
-        <p>Updated at{{ echo.updated_at }}</p> 
-        <p>Posted at {{ echo.created_at }}</p>
-    </div>
-    <h3>{{ echo.content }}</h3>
-    <p>by {{ echo.user }}</p>
-    </echo>
-    <waves>
-      <h3>Waves ({{ n_waves }})</h3>
-      {% for wave in waves %}
-        <wave>
-          <div class="datetime_info">
-            <p>Updated at{{ wave.updated_at }}</p> 
-            <p>Posted at {{ wave.created_at }}</p>
-        </div>
-        <h3>{{ wave.content }}</h3>
-        <p>by {{ wave.user }}</p>
-        </wave>
-      {% endfor %}
-    </waves>
-  {% endblock content %}
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<echo>
+  <div class="datetime_info">
+    <p>Updated at{{ echo.updated_at }}</p> 
+    <p>Posted at {{ echo.created_at }}</p>
+</div>
+<h3>{{ echo.content }}</h3>
+<p>by {{ echo.user }}</p>
+</echo>
+<waves>
+  <h3>Waves ({{ n_waves }})</h3>
+  <a href="{% url 'waves:add' echo.id %}"><i class="bi bi-chat-dots"></i></a>  
+    {% for wave in waves %}
+      <wave>
+        <div class="datetime_info">
+          <p>Updated at{{ wave.updated_at }}</p> 
+          <p>Posted at {{ wave.created_at }}</p>
+      </div>
+      <h3>{{ wave.content }}</h3>
+      <p>by {{ wave.user }}</p>
+      <menu>
+        {% if wave.user.id == user.id %}
+          <a href="{% url 'waves:delete' echo.id wave.id %}"><i class="bi bi-trash"></i></a>
+          <a href="{% url 'waves:edit' echo.id wave.id %}"><i class="bi bi-pencil-square"></i></a>
+        {% endif %}
+      </menu>
+      </wave>
+    {% endfor %}
+</waves>
+{% endblock content %}

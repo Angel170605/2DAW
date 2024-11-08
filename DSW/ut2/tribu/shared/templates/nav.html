@@ -1,0 +1,19 @@
+<nav>
+  <h1>Echos</h1>
+  {% if user.is_authenticated %}
+  <details>
+    <summary>{{ user.username }}</summary>
+    <div class="dropdown-content">
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </details>
+  {% else %}
+  <details>
+    <summary>Join to the tribu</summary>
+    <div class="dropdown-content">
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'signup' %}">Sign Up</a>
+    </div>
+  </details>    
+  {% endif %}
+</nav>

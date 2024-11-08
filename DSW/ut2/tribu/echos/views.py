@@ -16,7 +16,11 @@ def detail(request, echo_id: int):
     echo = Echo.objects.get(id=echo_id)
     waves = Wave.objects.filter(echo=echo)
     n_waves = waves.count()
-    return render(request, 'echo_detail.html', {'echo': echo, 'waves': waves, 'n_waves': n_waves})
+    return render(
+        request,
+        'echo_detail.html',
+        {'echo': echo, 'waves': waves, 'n_waves': n_waves, 'echo_id': echo_id},
+    )
 
 
 @login_required
@@ -49,4 +53,4 @@ def edit(request, echo_id: int):
 def delete(request, echo_id: int):
     echo = Echo.objects.get(id=echo_id)
     echo.delete()
-    return redirect('echos:echos')
+    return redirect('echos:detail')
